@@ -6,26 +6,47 @@ using UnityEngine.Pool;
 
 namespace Shoot
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
-        public IObjectPool<Projectile> ObjectPool { get; set; }
-
+        public IObjectPool<Projectile> ObjectPool { set => _objectPool = value; }
+        
+        [SerializeField]private Rigidbody rb;
+        
         private int _damage;
         private IObjectPool<Projectile> _objectPool;
+        private float _speed;
+        private bool _released;
+
       
         public void SetDamage(int damage) => _damage = damage;
-        private void OnCollisionEnter(Collision collision)
+        public async void SetDespawnTime(int despawnTime)
         {
-            if (collision.gameObject.TryGetComponent(typeof(IDamage), out Component component))
+            await UniTask.Delay(despawnTime);
+            _objectPool.Release(this);
+        }
+        public void SetSpeed(float speed) => _speed = speed;
+
+        private void OnEnable() => _released = false;
+
+        public void Launch(Vector3 direction)
+        {
+            transform.up = direction;
+            rb.AddForce(direction * _speed,ForceMode.Impulse);
+        }
+
+        private void OnTriggerEnter(Collider collider)
+        {
+            if (_released)
+            {
+                return;
+            }
+            if (collider.gameObject.TryGetComponent(typeof(IDamage), out Component component))
             {
                 ((IDamage)component).TakeDamage(_damage);
             }
-        }
-
-        public void SetDespawnTime(int despawnTime)
-        {
-            UniTask.Delay(despawnTime);
-            _objectPool.Release(this);
+            _released = true;
+            _objectPool?.Release(this);
         }
     }
 }

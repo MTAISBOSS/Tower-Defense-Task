@@ -13,6 +13,7 @@ namespace Enemy.Tank
         public int defaultCapacity = 20;
         private EnemyConfig _enemyConfig;
         private IObjectPool<Tank> _objectPool;
+        private Vector3 _spawnPosition;
 
         public TankFactory()
         {
@@ -23,7 +24,7 @@ namespace Enemy.Tank
 
         private Tank CreateTank()
         {
-            Tank enemy = Instantiate(_enemyConfig.prefab).GetComponent<Tank>();
+            Tank enemy = Instantiate(_enemyConfig.prefab,_spawnPosition,Quaternion.identity).GetComponent<Tank>();
             enemy.ObjectPool = _objectPool;
             return enemy;
         }
@@ -31,10 +32,19 @@ namespace Enemy.Tank
         private void OnGetFromPool(Tank tank)
         {
             tank.gameObject.SetActive(true);
+            tank.transform.position = _spawnPosition;
+            tank.transform.rotation = Quaternion.Euler(0,0,0);
+            tank.GetComponent<Movement>().IsAbleToMove = true;
+            if (tank.TryGetComponent(typeof(Health_System.Health), out Component health))
+            {
+                ((Health_System.Health)health).SetMaxHealth(_enemyConfig.health);
+            }
         }
 
         private void OnReleaseToPool(Tank tank)
         {
+            tank.transform.position = _spawnPosition;
+            tank.GetComponent<Movement>().IsAbleToMove = false;
             tank.gameObject.SetActive(false);
         }
 
@@ -46,11 +56,10 @@ namespace Enemy.Tank
         public override IEnemy Create(Vector3 spawnPosition, EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
+            _spawnPosition = spawnPosition;
             Tank tank = _objectPool.Get();
             
             GameObject enemy =tank.gameObject;
-            enemy.transform.position = spawnPosition;
-            enemy.transform.rotation = Quaternion.identity;
 
             if (enemy.TryGetComponent(typeof(Movement), out Component moveComponent))
             {

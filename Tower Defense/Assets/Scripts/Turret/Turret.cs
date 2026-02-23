@@ -10,14 +10,14 @@ namespace Turret
 {
     public class Turret : MonoBehaviour,IUpdate
     {
-        [SerializeField] private Transform target;
         [SerializeField] private TurretHeadTurn headTurn;
         [SerializeField] private TurretBarrelTurn barrelTurn;
         [SerializeField] private Gun gun;
         [SerializeField] private float targetingAngleThreshold;
         private float _angle;
         private EnemyTransformContainer _enemyContainer;
-
+        
+        private Transform target;
         private void OnEnable()
         {
             ServiceLocator.Instance.Get<UpdateManager>().Register(this);
@@ -37,6 +37,7 @@ namespace Turret
             if (Mathf.Abs(_angle) < targetingAngleThreshold)
             {
                 barrelTurn.Turn(target);
+                gun.Shoot();
             }
         }
     }

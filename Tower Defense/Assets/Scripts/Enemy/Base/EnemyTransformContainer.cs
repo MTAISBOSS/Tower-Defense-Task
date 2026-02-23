@@ -27,7 +27,7 @@ namespace Enemy.Base
 
         public Transform Get(Transform thisTransform)
         {
-            if (_transforms.Count > 0)
+            if (_transforms.Count == 0)
             {
                 return null;
             }

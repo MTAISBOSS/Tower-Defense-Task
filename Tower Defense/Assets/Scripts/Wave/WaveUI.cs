@@ -10,14 +10,20 @@ namespace Wave
     {
         [SerializeField] private TextMeshProUGUI waveLabel;
         [SerializeField] private EnemySpawner spawner;
-        [SerializeField] private float showTextDuration;
-        private void Start() => spawner.WaveStarted += ShowStartedWave;
-        private async void ShowStartedWave(int wave)
+        private void Start()
         {
-            waveLabel.gameObject.SetActive(true);
+            spawner.WaveStarted += ShowStartedWave;
+            spawner.WavesEnded += ShowWaveEnded;
+        }
+
+        private void ShowWaveEnded()
+        {
+            waveLabel.text = "Waves Ended! Good Job";
+        }
+
+        private void ShowStartedWave(int wave)
+        {
             waveLabel.text = $"Wave {wave + 1} has Started";
-            await UniTask.Delay((int)(showTextDuration * 1000));
-            waveLabel.text = String.Empty;
         }
     }
 }

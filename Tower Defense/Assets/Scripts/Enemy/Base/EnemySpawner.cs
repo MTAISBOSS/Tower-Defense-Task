@@ -11,7 +11,7 @@ namespace Enemy
     public class EnemySpawner : MonoBehaviour
     {
         public Action<int> WaveStarted;
-        public Action<int> WaveEnded;
+        public Action WavesEnded;
         
         [SerializeField] private WaveConfig[] waveConfigs;
         [SerializeField] private Transform[] spawnPoints;
@@ -35,8 +35,9 @@ namespace Enemy
                 var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
                 await _waveSpawner.SpawnWave(waveConfig, spawnPoint, cts);
                 Logger.LogWarning($"wave {i} ended");
-                WaveEnded?.Invoke(i);
             }
+            Logger.LogWarning("waves ended");
+            WavesEnded?.Invoke();
         }
     }
 }
