@@ -16,4 +16,4 @@ MonoBehaviour:
   type: 0
   health: 100
   damage: 20
-  speed: 5
+  speed: 7.5

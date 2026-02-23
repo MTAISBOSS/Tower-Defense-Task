@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1024655526401342120}
   - component: {fileID: 1610930925203452177}
   - component: {fileID: 9147760804417201456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocket Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4414871184787655004}
   - component: {fileID: 3841895143806779921}
   - component: {fileID: 3861539140925682724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocketLauncherBarrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 527761364376270613}
   - component: {fileID: 2406362108413741191}
   - component: {fileID: 59959803895836687}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}

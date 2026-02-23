@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3535919545821259967}
   - component: {fileID: 53447644387531595}
   - component: {fileID: 5809506910765532669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Twin Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 880267804706704945}
   - component: {fileID: 7489410930699288676}
   - component: {fileID: 2554873895870402076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TwinGunBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4231652284710131440}
   - component: {fileID: 8063138511988786552}
   - component: {fileID: 7627431902125242042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TwinGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 2411846812808148630}
   - component: {fileID: 4616918709129836962}
   - component: {fileID: 6583110537664042780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TwinGunBarrelL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 2003280054021472394}
   - component: {fileID: 4053450595745325631}
   - component: {fileID: 5396535339983361674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TwinGunBarrelR
   m_TagString: Untagged
   m_Icon: {fileID: 0}

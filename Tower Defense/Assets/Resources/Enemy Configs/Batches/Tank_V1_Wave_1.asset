@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.Base.EnemyBatch
   factory: {fileID: 11400000, guid: 2fe05128d0bd9af47b497a0c825a8743, type: 2}
   config: {fileID: 11400000, guid: f16180ed975ea8247b92ab80441ffe1f, type: 2}
-  timeBetweenSpawn: 5
+  timeBetweenSpawn: 1
   totalEnemiesAmount: 10

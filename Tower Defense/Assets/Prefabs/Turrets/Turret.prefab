@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 6678404878694440318}
   - component: {fileID: 6503590616260974893}
   - component: {fileID: 7995734633739582436}
-  m_Layer: 0
+  - component: {fileID: 6754578510581000880}
+  - component: {fileID: 7538922969681257442}
+  m_Layer: 8
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret.Turret
   headTurn: {fileID: 7995734633739582436}
+  barrelTurn: {fileID: 6754578510581000880}
+  gun: {fileID: 7538922969681257442}
+  targetingAngleThreshold: 15
 --- !u!114 &7995734633739582436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +123,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28682cb393954d169c976e66fa1a6fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret.TurretHeadTurn
-  rotationSpeed: 5
-  shootBarrel: {fileID: 3443829951395519986}
+  rotationSpeed: 50
   turretBase: {fileID: 4637693511977191880}
-  target: {fileID: 0}
+--- !u!114 &6754578510581000880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829328721474854420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3453553e8a8440782b5e44662295165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Turret.TurretBarrelTurn
+  rotationSpeed: 50
+  turretBarrel: {fileID: 3443829951395519986}
+  barrelHead: {fileID: 3552162017384679472}
+--- !u!114 &7538922969681257442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829328721474854420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfeee9c19b54c6b9d4fe26139f42063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shoot.Gun
+  projectile: {fileID: 9010465114275704912, guid: b240ceb20f9edd045ab9fb967583a761, type: 3}
+  projectileSetting:
+    despawnTime: 10
+    damage: 50
+    speed: 150
+  maxSize: 100
+  defaultCapacity: 20
+  timeBetweenShots: 1
+  detectRange: 50
+  shootPoint: {fileID: 3552162017384679472}
+  additionalOffset: {x: 0, y: 5, z: 0}
 --- !u!1 &1841879930357592260
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +174,7 @@ GameObject:
   - component: {fileID: 1751059437596022685}
   - component: {fileID: 723533215025620149}
   - component: {fileID: 6407230084993008687}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlakBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,14 +189,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841879930357592260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.09940656, z: 0, w: 0.9950469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3443829951395519986}
   m_Father: {fileID: 4637693511977191880}
-  m_LocalEulerAnglesHint: {x: 0, y: 11.41, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &723533215025620149
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -213,6 +254,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5278393334989197879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3552162017384679472}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3552162017384679472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278393334989197879}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.014819112, y: -0.005203975, z: 0.044466514}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6532403530543113708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7272703479281351852
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +296,7 @@ GameObject:
   - component: {fileID: 3443829951395519986}
   - component: {fileID: 4434367603958364246}
   - component: {fileID: 1534116487011967431}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7272703479281351852}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0008848428, y: 0.009591884, z: 0.0026943274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -315,7 +387,7 @@ GameObject:
   - component: {fileID: 6532403530543113708}
   - component: {fileID: 8980171092159321197}
   - component: {fileID: 7364232795385324378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlakCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +406,8 @@ Transform:
   m_LocalPosition: {x: 0.0016960334, y: -0.004387913, z: 0.0053391596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3552162017384679472}
   m_Father: {fileID: 3443829951395519986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8980171092159321197
@@ -403,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4637693511977191880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
